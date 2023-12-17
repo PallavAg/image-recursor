@@ -37,20 +37,8 @@
   }
 }
 
-/* .bg-cross-gradient {
-  background-image: 
-      linear-gradient(135deg, rgba(10, 25, 47, 0.9) 0%, rgba(29, 42, 63, 0.92) 50%, rgba(10, 25, 47, 0.9) 100%),
-      linear-gradient(195deg, rgba(8, 18, 38, 0.95) 0%, transparent 40%, rgba(8, 18, 38, 0.95) 100%);
-} */
-
-/* .bg-cross-gradient {
-  background-image: 
-      linear-gradient(135deg, rgba(8, 18, 38, 0.95) 0%, rgba(26, 35, 49, 0.95) 50%, rgba(8, 18, 38, 0.95) 100%),
-      linear-gradient(225deg, rgba(8, 18, 38, 0.95) 0%, transparent 50%, rgba(8, 18, 38, 0.95) 100%);
-} */
-
 .bg-cross-gradient {
   background-image: 
-      linear-gradient(135deg, rgba(6, 14, 30, 0.92) 0%, rgba(17, 28, 49, 0.91) 50%, rgb(6, 14, 30) 100%),
-      linear-gradient(205deg, rgba(12, 19, 32, 0.9) 0%, transparent 50%, rgba(12, 19, 32, 1) 100%);
+      linear-gradient(135deg, rgba(4, 28, 81, 0.92) 0%, rgba(14, 31, 60, 0.91) 50%, rgb(6, 14, 30) 85%),
+      linear-gradient(205deg, rgba(12, 19, 32, 0.9) 20%, transparent 45%, rgba(12, 19, 32, 1) 80%);
 }
