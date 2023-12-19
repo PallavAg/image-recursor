@@ -1,17 +1,13 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: ['./src/**/*.{js,jsx,ts,tsx}'],
+  content: ["./src/**/*.{js,jsx,ts,tsx}"],
   theme: {
     extend: {
-      colors: {
-        'blue-gray': {
-          900: '#222222', // Replace with your preferred color code
-        },
-      },
+      colors: {},
       fontFamily: {
-        sans: ['Inter', 'sans-serif'],
+        sans: ["Inter", "sans-serif"],
       },
     },
   },
-  plugins: [],
-}
+  plugins: [require("@codaworks/react-glow/tailwind")],
+};

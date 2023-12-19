@@ -4,6 +4,7 @@ import gifshot from "gifshot";
 import OpenAI from "openai";
 import "./firebase.js";
 import Cookies from "js-cookie";
+import { GlowCapture, Glow } from "@codaworks/react-glow";
 
 const API_KEY = "";
 
@@ -266,190 +267,196 @@ function App() {
 
   return (
     <div className="App">
-      <nav className="bg-zinc-800 p-4 text-white flex justify-between">
-        <div className="font-bold" onClick={() => setShowAbout(false)}>
-          Image Recursor
-        </div>
-        <div>
-          {/* Other navigation items here */}
-          <button className="ml-4" onClick={handleAboutClick}>
-            {showAbout ? "Hide" : "About"}
-          </button>
-        </div>
-      </nav>
-      {showAbout && aboutContent()}
-      <div className="flex min-h-screen flex-col items-center bg-cross-gradient pt-6 font-sans text-white">
-        <h1 className="text-3xl sm:text-5xl md:text-5xl lg:text-5xl p-2 font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-teal-400 mb-6">
-          DALL-E 3 & GPT-4 Vision <br /> Image Recursor
-        </h1>
-        <div className="bg-black/20 backdrop-blur-md rounded-xl w-lg p-4 mb-4 mx-2 shadow-lg shadow-gray-900/50 border border-black/50 text-left">
-          <div className="mb-2">
-            <label
-              htmlFor="prompt"
-              className="mb-2 block text-sm font-semibold text-gray-200 text-left"
-            >
-              Starting Image Prompt
-            </label>
-            <textarea
-              id="prompt"
-              placeholder="A unicorn driving a car on the moon..."
-              className="w-full rounded-lg bg-gray-900 p-2 text-white shadow-md focus:outline-none overflow-hidden"
-              style={{ maxHeight: "3.5rem" }}
-              value={prompt}
-              onChange={(e) => setPrompt(e.target.value)}
-              autoComplete="off"
-              rows="1"
-            />
+      <GlowCapture size={500}>
+        <nav className="bg-zinc-800 p-4 text-white flex justify-between">
+          <div className="font-bold" onClick={() => setShowAbout(false)}>
+            Image Recursor
           </div>
-          {/* Second Input Row */}
-          <div className="flex justify-between mb-2">
-            {/* Count Input */}
-            <div className="flex-1 mr-2">
-              <label
-                htmlFor="count"
-                className="mb-2 block text-sm font-semibold text-gray-200"
-              >
-                # of Loops
-              </label>
-              <input
-                id="count"
-                type="number"
-                className="w-full rounded-lg bg-gray-900 p-2 text-white shadow-md focus:outline-none"
-                value={imageCount}
-                autoComplete="off"
-                min="1"
-                onChange={(e) => {
-                  setImageCount(Math.max(1, e.target.valueAsNumber));
-                }}
-              />
-            </div>
-            {/* API Key Input */}
-            <div className="flex flex-col ml-2">
-              <div className="flex items-center mb-2">
+          <div>
+            {/* Other navigation items here */}
+            <button className="ml-4" onClick={handleAboutClick}>
+              {showAbout ? "Hide" : "About"}
+            </button>
+          </div>
+        </nav>
+        {showAbout && aboutContent()}
+        <div className="flex min-h-screen flex-col items-center bg-cross-gradient pt-6 font-sans text-white">
+          <h1 className="text-3xl sm:text-5xl md:text-5xl lg:text-5xl p-2 font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-teal-400 mb-6">
+            DALL-E 3 & GPT-4 Vision <br /> Image Recursor
+          </h1>
+          <Glow>
+            <div className="glow:bg-blue-900/40 glow:border-blue-500 bg-black/20 rounded-xl w-lg p-4 mb-4 mx-2 shadow-lg glow:shadow-xl shadow-gray-900/50 border-2 border-black/20 text-left">
+              <div className="mb-2">
                 <label
-                  htmlFor="api-key"
-                  className="text-sm font-semibold text-gray-200 mr-2"
+                  htmlFor="prompt"
+                  className="mb-2 block text-sm font-semibold text-gray-200 text-left"
                 >
-                  OpenAI API Key
+                  Starting Image Prompt
                 </label>
-                <div className="relative group">
-                  <button
-                    type="button"
-                    className="text-gray-200 hover:text-gray-100"
+                <textarea
+                  id="prompt"
+                  placeholder="A unicorn driving a car on the moon..."
+                  className="w-full rounded-lg bg-gray-900 p-2 text-white shadow-md focus:outline-none overflow-hidden glow:border-blue-400 border-2 border-transparent"
+                  style={{ maxHeight: "3.5rem" }}
+                  value={prompt}
+                  onChange={(e) => setPrompt(e.target.value)}
+                  autoComplete="off"
+                  rows="1"
+                />
+              </div>
+              {/* Second Input Row */}
+              <div className="flex justify-between mb-2">
+                {/* Count Input */}
+                <div className="flex-1 mr-2">
+                  <label
+                    htmlFor="count"
+                    className="mb-2 block text-sm font-semibold text-gray-200"
                   >
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      className="h-4 w-4"
-                      viewBox="2 0 20 17"
-                      fill="currentColor"
+                    # of Loops
+                  </label>
+                  <input
+                    id="count"
+                    type="number"
+                    className="w-full rounded-lg bg-gray-900 p-2 text-white shadow-md focus:outline-none"
+                    value={imageCount}
+                    autoComplete="off"
+                    min="1"
+                    onChange={(e) => {
+                      setImageCount(Math.max(1, e.target.valueAsNumber));
+                    }}
+                  />
+                </div>
+                {/* API Key Input */}
+                <div className="flex flex-col ml-2">
+                  <div className="flex items-center mb-2">
+                    <label
+                      htmlFor="api-key"
+                      className="text-sm font-semibold text-gray-200 mr-2"
                     >
-                      <path d="M18 10c0 4.418-3.582 8-8 8s-8-3.582-8-8 3.582-8 8-8 8 3.582 8 8zm-8-3a1 1 0 100-2 1 1 0 000 2zm1 2H9v5h2V9z" />
-                    </svg>
-                  </button>
-                  <div className="absolute bottom-full mb-2 hidden group-hover:block w-48 rounded-md bg-gray-800 p-2 text-sm text-gray-100">
-                    Your API key stays on-device.
+                      OpenAI API Key
+                    </label>
+                    <div className="relative group">
+                      <button
+                        type="button"
+                        className="text-gray-200 hover:text-gray-100"
+                      >
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          className="h-4 w-4"
+                          viewBox="2 0 20 17"
+                          fill="currentColor"
+                        >
+                          <path d="M18 10c0 4.418-3.582 8-8 8s-8-3.582-8-8 3.582-8 8-8 8 3.582 8 8zm-8-3a1 1 0 100-2 1 1 0 000 2zm1 2H9v5h2V9z" />
+                        </svg>
+                      </button>
+                      <div className="absolute bottom-full mb-2 hidden group-hover:block w-48 rounded-md bg-gray-800 p-2 text-sm text-gray-100">
+                        Your API key stays on-device.
+                      </div>
+                    </div>
                   </div>
+                  <input
+                    id="api-key"
+                    type="password"
+                    placeholder="sk-123..."
+                    className="w-full rounded-lg bg-gray-900 p-2 -mt-1 text-white shadow-md focus:outline-none"
+                    value={apiKey.replace(/./g, "●")}
+                    onChange={(e) => {
+                      openai.apiKey = e.target.value;
+                      setApiKey(e.target.value);
+                    }}
+                  />
                 </div>
               </div>
-              <input
-                id="api-key"
-                type="password"
-                placeholder="sk-123..."
-                className="w-full rounded-lg bg-gray-900 p-2 -mt-1 text-white shadow-md focus:outline-none"
-                value={apiKey.replace(/./g, "●")}
-                onChange={(e) => {
-                  openai.apiKey = e.target.value;
-                  setApiKey(e.target.value);
-                }}
-              />
+              {/* GPT-4 Vision Prompt */}
+              <div className="mt-4">
+                <label
+                  htmlFor="visionPrompt"
+                  className="mb-2 block text-sm font-semibold text-gray-200 text-left"
+                >
+                  GPT-4 Vision Prompt
+                </label>
+                <select
+                  id="visionPromptSelect"
+                  className="w-full rounded-lg bg-gray-900 p-2 text-white shadow-md focus:outline-none"
+                  value={selectedOption}
+                  onChange={handleSelectChange}
+                >
+                  {Object.entries(promptTemplates).map(([key]) => (
+                    <option key={key} value={key}>
+                      {key}
+                    </option>
+                  ))}
+                  <option value="custom">Custom Prompt</option>
+                </select>
+                {customPromptSelected && (
+                  <textarea
+                    id="visionPrompt"
+                    placeholder="Write a custom prompt for GPT-4 Vision..."
+                    className="w-full mt-2 rounded-lg bg-gray-900 p-2 text-white shadow-md focus:outline-none"
+                    value={visionPrompt}
+                    onChange={(e) => setVisionPrompt(e.target.value)}
+                    rows="3"
+                  />
+                )}
+              </div>
+              <p className="text-gray-400 text-xs mt-3">
+                <b>Gartic phone for images:</b> Write a prompt and see how it
+                changes over time!
+              </p>
             </div>
-          </div>
-          {/* GPT-4 Vision Prompt */}
-          <div className="mt-4">
-            <label
-              htmlFor="visionPrompt"
-              className="mb-2 block text-sm font-semibold text-gray-200 text-left"
+          </Glow>
+          <Glow>
+            <button
+              className="border-2 border-transparent glow:border-blue-500/80 flex items-center mt-2 justify-center text-2xl rounded-xl bg-blue-600/90 glow:bg-black/40 px-6 py-2 font-black text-white shadow-md glow:shadow-2xl transition duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-0 active:scale-95 active:bg-blue-800"
+              onClick={async () => {
+                try {
+                  await handleGenerate();
+                } catch (e) {
+                  setLoadingText("");
+                  console.error(e);
+                  if (results.length > 0) {
+                    setIsComplete(true);
+                    alert("OpenAI API returned an error.");
+                  } else {
+                    alert(
+                      "Error generating images. Check your API Key or internet connection.",
+                    );
+                  }
+                }
+              }}
             >
-              GPT-4 Vision Prompt
-            </label>
-            <select
-              id="visionPromptSelect"
-              className="w-full rounded-lg bg-gray-900 p-2 text-white shadow-md focus:outline-none"
-              value={selectedOption}
-              onChange={handleSelectChange}
-            >
-              {Object.entries(promptTemplates).map(([key]) => (
-                <option key={key} value={key}>
-                  {key}
-                </option>
-              ))}
-              <option value="custom">Custom Prompt</option>
-            </select>
-            {customPromptSelected && (
-              <textarea
-                id="visionPrompt"
-                placeholder="Write a custom prompt for GPT-4 Vision..."
-                className="w-full mt-2 rounded-lg bg-gray-900 p-2 text-white shadow-md focus:outline-none"
-                value={visionPrompt}
-                onChange={(e) => setVisionPrompt(e.target.value)}
-                rows="3"
-              />
-            )}
-          </div>
-          <p className="text-gray-400 text-xs mt-3">
-            <b>Gartic phone for images:</b> Write a prompt and see how it
-            changes over time!
-          </p>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                data-name="Icon"
+                className="mr-2 h-6 w-6"
+                viewBox="2 0 110 100"
+                x="0px"
+                y="0px"
+                fill="currentColor"
+                stroke="currentColor"
+              >
+                <path d={PATH1} />
+                <path d={PATH2} />
+              </svg>
+              Generate
+            </button>
+          </Glow>
+          {gifURL && (
+            <div className="max-w-lg p-4 w-full text-center">
+              <h1 className="font-black text-3xl pb-1">Result ✨</h1>
+              <img src={gifURL} alt="Generated GIF" className="rounded-sm" />
+              <a
+                href={gifURL}
+                download="image-recuror-result.gif"
+                className="mt-2 inline-block bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+              >
+                Save GIF
+              </a>
+            </div>
+          )}
+          <div className="my-4">{ResultsList()}</div>
         </div>
-        <button
-          className="flex transform items-center mt-2 justify-center text-2xl rounded-lg bg-blue-600 px-6 py-2 font-black text-white shadow-md transition duration-200 ease-in-out hover:scale-105 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-0 active:scale-95 active:bg-blue-800"
-          onClick={async () => {
-            try {
-              await handleGenerate();
-            } catch (e) {
-              setLoadingText("");
-              console.error(e);
-              if (results.length > 0) {
-                setIsComplete(true);
-                alert("OpenAI API returned an error.");
-              } else {
-                alert(
-                  "Error generating images. Check your API Key or internet connection.",
-                );
-              }
-            }
-          }}
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            data-name="Icon"
-            className="mr-2 h-6 w-6"
-            viewBox="2 0 110 100"
-            x="0px"
-            y="0px"
-            fill="currentColor"
-            stroke="currentColor"
-          >
-            <path d={PATH1} />
-            <path d={PATH2} />
-          </svg>
-          Generate
-        </button>
-        {gifURL && (
-          <div className="max-w-lg p-4 w-full text-center">
-            <h1 className="font-black text-3xl pb-1">Result ✨</h1>
-            <img src={gifURL} alt="Generated GIF" className="rounded-sm" />
-            <a
-              href={gifURL}
-              download="image-recuror-result.gif"
-              className="mt-2 inline-block bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-            >
-              Save GIF
-            </a>
-          </div>
-        )}
-        <div className="my-4">{ResultsList()}</div>
-      </div>
+      </GlowCapture>
     </div>
   );
 }
